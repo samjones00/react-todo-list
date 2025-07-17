@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const Task = ({ task }) => {
-
-    const [isChecked, setIsChecked] = useState(task.isComplete);
-
-    const handleCheckboxChange = (e) => {
-        setIsChecked(e.target.checked);
-    };
-
-    return (<li>
-        <input type="checkbox" checked={isChecked} className="task-checkbox" onChange={handleCheckboxChange} />
-        {task.title}
-    </li>);
-}
+const Task = ({ task, toggleTaskComplete }) => {
+  const handleCheckboxChange = (e) => {
+    toggleTaskComplete(task.id, e.target.checked);
+  };
+  return (
+    <li>
+      <input
+        type="checkbox"
+        checked={task.isComplete}
+        className="task-checkbox"
+        onChange={handleCheckboxChange}
+      />
+      <Link to={`/tasks/${task.id}`}>{task.title}</Link>
+    </li>
+  );
+};
 
 export default Task;

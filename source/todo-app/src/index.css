@@ -1,8 +1,53 @@
-ul, ol {
+/* Details page styles for full width layout */
+.details-page {
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 0 1.5em;
+}
+.details-title {
+  margin-bottom: 1em;
+}
+.details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+/* Home page styles */
+.home-page {
+  padding: 0 1.5em;
+}
+.home-title {
+  margin-bottom: 0.5em;
+}
+.home-count {
+  margin-bottom: 1em;
+  margin-left: 0.5em;
+}
+/* NavBar styles */
+.navbar {
+  width: 100%;
+  background: #1a1a1a;
+  padding: 1em 2em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  margin-bottom: 2em;
+}
+.navbar-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.2em;
+  margin-right: 2em;
+}
+ul,
+ol {
   list-style: none;
   padding: 0;
   margin: 0.5em 0;
 }
+
 li {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -15,23 +60,26 @@ li {
   transition: border-color 0.25s;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   text-align: left;
 }
+
 /* Style for checkbox on the right */
 .task-checkbox {
-  margin-left: 1em;
+  margin-right: 1em;
   accent-color: #646cff;
   width: 1.2em;
   height: 1.2em;
   flex-shrink: 0;
 }
+
 @media (prefers-color-scheme: light) {
   li {
     background-color: #f9f9f9;
     color: #213547;
   }
 }
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -52,16 +100,30 @@ a {
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+main,
+.page-content {
+  width: 100vw;
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 h1 {
@@ -73,7 +135,7 @@ button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 1em 1.5em;
-  margin: 0.5em;
+  margin: 0.5em 0.5em 0.5em 0;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -81,19 +143,27 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+button.button-delete {
+  background-color: #ff4d4f;
+  color: #fff;
+}
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
 /* Style for text input to match button */
 .text-input {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 1em 1.5em;
-  margin: 0.5em;
+  margin: 0.5em 0.5em 0.5em 0;
   font-size: 1em;
   font-family: inherit;
   background-color: #fff;
@@ -101,6 +171,7 @@ button:focus-visible {
   transition: border-color 0.25s;
   outline: none;
 }
+
 .text-input:focus {
   border-color: #646cff;
 }
@@ -119,5 +190,6 @@ button:focus-visible {
   .text-input {
     background-color: #fff;
     color: #213547;
+    margin: 0.5em 0.5em 0.5em 0;
   }
 }

@@ -1,11 +1,11 @@
-import Task from './task'
+import Task from "./task";
 
-const Tasks = ({ tasks }) => (
-    <ul>
-        {tasks.map((t, idx) => (
-            <Task task={t} key={idx} />
-        ))}
-    </ul>
+const Tasks = ({ tasks, toggleTaskComplete }) => (
+  <ul>
+    {tasks.map((t, idx) => (
+      <Task task={t} key={t.id} toggleTaskComplete={toggleTaskComplete} />
+    ))}
+  </ul>
 );
 
 export default Tasks;
