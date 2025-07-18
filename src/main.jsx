@@ -5,23 +5,20 @@ import "./index.css";
 import Details from "./components/Task/details";
 import Tasks from "./components/Task/tasks";
 import Add from "./components/Task/add";
-import SortTasks from "./components/Task/sortTasks";
+import Sorter from "./components/Task/sorter";
 import useTasks from "./assets/hooks/useTasks";
 
-function Home({ taskList, createTask, toggleTaskComplete }) {
+function Home({ taskList, createTask, sortTasks, toggleTaskComplete }) {
   return (
     <div style={{ padding: "0 1.5em" }}>
-      <SortTasks />
+      <Sorter sortTasks={sortTasks} />
       <Tasks tasks={taskList} toggleTaskComplete={toggleTaskComplete} />
-      <p style={{ marginBottom: "1em", marginLeft: "0.5em" }}>
-        Total tasks: {taskList.length}
-      </p>
       <Add createTask={createTask} />
     </div>
   );
 }
 
-function NavBar() {
+function NavBar({ taskListLength }) {
   return (
     <nav
       style={{
@@ -45,7 +42,7 @@ function NavBar() {
           marginRight: "2em",
         }}
       >
-        Tasks
+        {taskListLength} Task{taskListLength === 1 ? "" : "s"}
       </Link>
     </nav>
   );
@@ -58,18 +55,20 @@ function MainApp() {
     toggleTaskComplete,
     updateTask,
     deleteTask,
+    sortTasks,
   } = useTasks();
 
   return (
     <StrictMode>
       <BrowserRouter>
-        <NavBar />
+        <NavBar taskListLength={taskList.length} />
         <Routes>
           <Route
             path="/"
             element={
               <Home
                 taskList={taskList}
+                sortTasks={sortTasks}
                 createTask={createTask}
                 toggleTaskComplete={toggleTaskComplete}
               />

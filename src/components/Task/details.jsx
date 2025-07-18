@@ -45,6 +45,12 @@ const Details = ({ tasks, updateTask, deleteTask }) => {
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1em" }}>
           <label htmlFor="task-complete" style={{ minWidth: "90px" }}>
+            Created
+          </label>
+          {new Date(task.$createdAt).toLocaleDateString("en-GB", {  hour: 'numeric',  minute: 'numeric',  hour12: true})}
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "1em" }}>
+          <label htmlFor="task-complete" style={{ minWidth: "90px" }}>
             Is Complete
           </label>
           <input

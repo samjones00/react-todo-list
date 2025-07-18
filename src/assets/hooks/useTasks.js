@@ -8,6 +8,31 @@ const useTasks = () => {
     getTasks();
   }, []);
 
+  const sortTasks = (sortBy) => {
+    let sortedTasks = [...taskList];
+
+    switch (sortBy) {
+      case "title":
+        sortedTasks.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "date":
+        sortedTasks.sort((a, b) => new Date(a.$createdAt) - new Date(b.$createdAt));
+        break;
+      case "completed":
+        sortedTasks.sort((a, b) => a.isComplete - b.isComplete);
+        break;
+      default:
+        break;
+    }
+
+    var sortOrder = sortBy.split(" ");
+    if (sortOrder.length > 1 && sortOrder[1] === "desc") {
+      sortedTasks.reverse();
+    }
+
+    setTaskList(sortedTasks);
+  }
+
   const getTasks = async () => {
     const tasks = await taskService.getTasks();
     setTaskList(tasks);
@@ -44,6 +69,7 @@ const useTasks = () => {
     toggleTaskComplete,
     updateTask,
     deleteTask,
+    sortTasks
   };
 };
 
