@@ -4,7 +4,7 @@ import { useState } from "react";
 const Details = ({ tasks, updateTask, deleteTask }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const task = tasks.find((t) => t.id === Number(id));
+  const task = tasks.find((t) => t.$id === id);
 
   if (!task) {
     return <div>Task not found</div>;
@@ -14,7 +14,7 @@ const Details = ({ tasks, updateTask, deleteTask }) => {
   const [isComplete, setIsComplete] = useState(task.isComplete);
 
   const handleSave = () => {
-    updateTask(task.id, { title, isComplete });
+    updateTask(task.$id, { title, isComplete });
     navigate("/", { replace: true });
   };
 
@@ -23,7 +23,7 @@ const Details = ({ tasks, updateTask, deleteTask }) => {
   };
 
   const handleDelete = () => {
-    deleteTask(task.id);
+    deleteTask(task.$id);
     navigate("/", { replace: true });
   };
 
@@ -33,7 +33,7 @@ const Details = ({ tasks, updateTask, deleteTask }) => {
       <div className="details-content">
         <div style={{ display: "flex", alignItems: "center", gap: "1em" }}>
           <label htmlFor="task-title" style={{ minWidth: "90px" }}>
-            Task Title:
+            Title
           </label>
           <input
             className="text-input"
@@ -45,7 +45,7 @@ const Details = ({ tasks, updateTask, deleteTask }) => {
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1em" }}>
           <label htmlFor="task-complete" style={{ minWidth: "90px" }}>
-            Is Complete:
+            Is Complete
           </label>
           <input
             type="checkbox"

@@ -1,19 +1,22 @@
-import { StrictMode, useState } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./index.css";
-import Details from "./components/Task/details.jsx";
+import Details from "./components/Task/details";
 import Tasks from "./components/Task/tasks";
 import Add from "./components/Task/add";
+import SortTasks from "./components/Task/sortTasks";
+import useTasks from "./assets/hooks/useTasks";
 
-function Home({ taskList, saveTask, toggleTaskComplete }) {
+function Home({ taskList, createTask, toggleTaskComplete }) {
   return (
     <div style={{ padding: "0 1.5em" }}>
+      <SortTasks />
       <Tasks tasks={taskList} toggleTaskComplete={toggleTaskComplete} />
       <p style={{ marginBottom: "1em", marginLeft: "0.5em" }}>
         Total tasks: {taskList.length}
       </p>
-      <Add saveTask={saveTask} />
+      <Add createTask={createTask} />
     </div>
   );
 }
@@ -48,34 +51,14 @@ function NavBar() {
   );
 }
 
-const initialTasks = [
-  { id: 1, title: "task 1", isComplete: true },
-  { id: 2, title: "task 2", isComplete: false },
-];
-
 function MainApp() {
-  const [taskList, setTaskList] = useState(initialTasks);
-
-  const saveTask = (task) => {
-    setTaskList([
-      ...taskList,
-      { id: taskList.length + 1, title: task, isComplete: false },
-    ]);
-  };
-
-  const toggleTaskComplete = (id, checked) => {
-    setTaskList(
-      taskList.map((t) => (t.id === id ? { ...t, isComplete: checked } : t)),
-    );
-  };
-
-  const updateTask = (id, changes) => {
-    setTaskList(taskList.map((t) => (t.id === id ? { ...t, ...changes } : t)));
-  };
-
-  const deleteTask = (id) => {
-    setTaskList(taskList.filter((t) => t.id !== id));
-  };
+  const {
+    taskList,
+    createTask,
+    toggleTaskComplete,
+    updateTask,
+    deleteTask,
+  } = useTasks();
 
   return (
     <StrictMode>
@@ -87,7 +70,7 @@ function MainApp() {
             element={
               <Home
                 taskList={taskList}
-                saveTask={saveTask}
+                createTask={createTask}
                 toggleTaskComplete={toggleTaskComplete}
               />
             }

@@ -64,9 +64,14 @@ li {
   text-align: left;
 }
 
+li.completed a{
+  color: #b0b0b0;
+  text-decoration: line-through;
+}
+
 /* Style for checkbox on the right */
 .task-checkbox {
-  margin-right: 1em;
+  margin-right: 3em;
   accent-color: #646cff;
   width: 1.2em;
   height: 1.2em;
@@ -97,12 +102,12 @@ li {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #fff;
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #fff;
 }
 
 body {
@@ -174,6 +179,30 @@ button:focus-visible {
 
 .text-input:focus {
   border-color: #646cff;
+}
+
+.sort-tasks-list {
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin: 0.5em 0;
+}
+
+.sort-tasks-list li {
+  flex: 1;
+  text-align: center;
+  list-style: none;
+  padding: 1em 1.5em;
+  margin: 0.5em;
+  border: 1px solid transparent;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (prefers-color-scheme: light) {
